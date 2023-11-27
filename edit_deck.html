@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier le Deck</title>
+</head>
+<body>
+    <h1>Modifier le Deck</h1>
+    <form action="{{ url_for('edit_deck', deck_id=deck_id) }}" method="post">
+        {% for carte in toutes_les_cartes %}
+            <div>
+                <input type="checkbox" name="carte_id" value="{{ carte.id }}"
+                       {% if carte in cartes_du_deck %} checked {% endif %}>
+                {{ carte.nom }}
+                <!-- Afficher l'image de la carte -->
+                <img src="{{ url_for('static', filename=carte.image_path) }}" alt="Image de {{ carte.nom }}">
+            </div>
+        {% endfor %}
+        <button type="submit">Mettre à jour le deck</button>
+    </form>
+</body>
+</html>

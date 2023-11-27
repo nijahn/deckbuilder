@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un Deck</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Ajouter un nouveau Deck</h1>
+    <form action="{{ url_for('add_deck_route') }}" method="post">
+        <label for="deck_name">Nom du Deck:</label>
+        <input type="text" id="deck_name" name="deck_name" required><br>
+
+        <label for="colors">Couleurs:</label>
+        <input type="text" id="colors" name="colors" required><br>
+
+        <label for="leader_id">Leader:</label>
+        <select name="leader_id" id="leader_id" required>
+            {% for leader in leaders %}
+                <option value="{{ leader.id }}">{{ leader.nom }}</option>
+            {% endfor %}
+        </select><br>
+        <button type="submit">Ajouter le Deck</button>
+    </form>
+</body>
+</html>

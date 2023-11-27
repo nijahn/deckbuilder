@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Voir le Deck</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto; /* Exemple pour trois colonnes */
+            padding: 10px;
+        }
+        .grid-item {
+            padding: 20px;
+            text-align: center;
+        }
+        img {
+            width: 100px; /* ou toute autre taille */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+   {% if deck %}
+    <h1>{{ deck.nom }}</h1>
+    <!-- Afficher les informations du leader si disponible -->
+    {% if leader %}
+        <h2>Leader: {{ leader.nom }}</h2>
+        <img src="{{ url_for('static', filename=leader.image_path) }}" alt="{{ leader.nom }}">
+    {% endif %}
+
+     <h2>Cartes: {{ cartes.nom }}</h2>
+    <div class="grid-container">
+        {% for carte in cartes %}
+            <div class="grid-item">
+                <img src="{{ url_for('static', filename=carte.image_path) }}" alt="{{ carte.nom }}">
+                <p>{{ carte.nom }}</p>
+                <a href="{{ url_for('delete_carte_from_deck', deck_id=deck.id, carte_id=carte.id) }}">Supprimer</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+    </div>
+</body>
+</html>
+
+	

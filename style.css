@@ -1,0 +1,9 @@
+body {
+    background-color: #ffffff;
+    background-image: url('background.jpg');
+    background-size: cover; /* Couvre toute la page */
+    background-repeat: no-repeat; /* Pour ne pas répéter l'image */
+}
+h1 {
+    color: white;
+}
